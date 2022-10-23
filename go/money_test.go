@@ -4,23 +4,17 @@ import (
 	"testing"
 )
 
-func TestMultiplication(t *testing.T) {
-	fiver := Dollar{
-		amount: 5,
+func TestMultiplicationInDollars(t *testing.T) {
+	fiver := Money{
+		amount:   5,
+		currency: "USD",
 	}
 	tenner := fiver.Times(2)
 	if tenner.amount != 10 {
 		t.Errorf("Expected 10, got: [%d]", tenner.amount)
 	}
-}
-
-type Dollar struct {
-	amount int
-}
-
-func (d Dollar) Times(multiplier int) Dollar {
-	return Dollar{
-		amount: d.amount * multiplier,
+	if tenner.currency != "USD" {
+		t.Errorf("Expected USD, got: [%s]", tenner.currency)
 	}
 }
 
